@@ -10,6 +10,7 @@ import glob
 import json
 import pprint
 from datetime import datetime
+from datetime import timezone
 
 sys.tracebacklimit = 0
 
@@ -164,7 +165,7 @@ def main():
         if save:
             timestamp = float(int(save['saveTime']['timestamp'],16))/1000
         if timestamp:
-            dt_object = datetime.utcfromtimestamp(timestamp)
+            dt_object = datetime.fromtimestamp(timestamp,timezone.utc)
             j = dt_object.strftime('%A')
             d = dt_object.strftime('%Y-%m-%d')
             t = dt_object.strftime('%H:%M:%S')

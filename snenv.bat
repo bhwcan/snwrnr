@@ -1,3 +1,4 @@
+
 @ECHO OFF
 echo Simple set up for Snowrunner scripts
 echo ------------------------------------
@@ -33,8 +34,10 @@ echo Run as administrator to set path or manually set path to "%HOMEDRIVE%%HOMEP
 GOTO :END
 :SETEPIC
 echo Setting up snvars.bat to contain the paths to SnowRunner installations
-echo set SNBACKUP="%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BACDIR%" > "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snvars.bat"
-echo set SNSRC="%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%SRCDIR%" >> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snvars.bat"
+echo rem Global variables may need tweaking do not rerun snenv.bat or it will lose changes > "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snvars.bat"
+echo set PYTHON=py>> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snvars.bat"
+echo set SNBACKUP="%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BACDIR%">> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snvars.bat"
+echo set SNSRC="%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%SRCDIR%">> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snvars.bat"
 echo Searching for Epic install
 set EP="%HOMEDRIVE%%HOMEPATH%\Documents\My Games\SnowRunner\base\storage"
 set name=none
@@ -43,7 +46,7 @@ for /f  "delims==" %%i in ('dir /ad /b %EP%\*')  do (
 )
 if %name% == none GOTO :SETPTS
 echo Found Epic creating snepic.bat to take you to the save files
-echo set EPICDATA="%HOMEDRIVE%%HOMEPATH%\Documents\My Games\SnowRunner\base\storage\%name%" >> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snvars.bat"
+echo set EPICDATA="%HOMEDRIVE%%HOMEPATH%\Documents\My Games\SnowRunner\base\storage\%name%">> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snvars.bat"
 echo @ECHO OFF > "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snepic.bat"
 echo CALL snvars.bat >> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snepic.bat"
 echo IF %%ERRORLEVEL%% NEQ 0 EXIT /b 1 >> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snepic.bat"
@@ -57,7 +60,7 @@ for /f  "delims==" %%i in ('dir /ad /b %EP%\*')  do (
 )
 if %name% == none GOTO :SETSTEAM
 echo Found PTS creating snpts.bat to take you to the save files
-echo set PTSDATA="%HOMEDRIVE%%HOMEPATH%\Documents\My Games\SnowRunnerBeta\base\storage\%name%" >> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snvars.bat"
+echo set PTSDATA="%HOMEDRIVE%%HOMEPATH%\Documents\My Games\SnowRunnerBeta\base\storage\%name%">> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snvars.bat"
 echo @ECHO OFF > "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snpts.bat"
 echo CALL snvars.bat >> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snpts.bat"
 echo IF %%ERRORLEVEL%% NEQ 0 EXIT /b 1 >> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snpts.bat"
@@ -71,7 +74,7 @@ for /f  "delims==" %%i in ('dir /ad /b %EP%\*')  do (
 )
 if %name% == none GOTO :END
 echo Found Steam creating snsteam.bat to take you to the save files
-echo set STEAMDATA="C:\Program Files (x86)\Steam\userdata\%name%\1465360\remote" >> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snvars.bat"
+echo set STEAMDATA="C:\Program Files (x86)\Steam\userdata\%name%\1465360\remote">> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snvars.bat"
 echo @ECHO OFF > "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snsteam.bat"
 echo CALL snvars.bat >> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snsteam.bat"
 echo IF %%ERRORLEVEL%% NEQ 0 EXIT /b 1 >> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snsteam.bat"
