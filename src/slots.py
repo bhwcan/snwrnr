@@ -1,3 +1,9 @@
+# Copyright (c) 2023, bhwcan
+# All rights reserved.
+#
+# This source code is licensed under the BSD-style license found in the
+# LICENSE file in the root directory of this source tree. 
+
 import os
 import sys
 import glob
@@ -6,11 +12,6 @@ import pprint
 from datetime import datetime
 
 sys.tracebacklimit = 0
-
-#READPATH="/mnt/h/SnowRunner/work/a6b8b8cca2ea4c8586f9550081030d21"
-READPATH="/mnt/h/SnowRunner/work/remote"
-SLOT=2
-NAME="Byron Walton"
 
 MAPS = {
     'level_us_01_01': ["Black River", "Michigan", "USA"],
@@ -224,17 +225,7 @@ def main():
             print(l1,l2,l3,l4)
         i = i + 1
 
-
-#    save = game.slots[0].j[game.slots[0].savename]['SslValue']
-#    for s_id, s_info in save.items():
-#        print("\nID:", s_id)
-#        #print(s_info, type(s_info))
-#        if type(s_info) is dict:
-#            for ss_id, ss_info in s_info.items():
-#                print("\tID:", ss_id)
-            
-
-        
+# MAIN        
 if __name__ == "__main__":
 
     if os.name == 'nt': # Only if we are running on Windows
