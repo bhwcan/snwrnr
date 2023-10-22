@@ -24,20 +24,34 @@ echo CD %%HOMEPATH%% >> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snhome.bat"
 echo Checking if path variable is set up for the bin directory
 call snhome.bat
 IF ERRORLEVEL 1 GOTO :NOPATH
-GOTO :SETEPIC
+GOTO :SETVARS
 :NOPATH
 setx /M PATH "%PATH%;%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%"
 IF ERRORLEVEL 1 GOTO :NOSETX
-GOTO :SETEPIC
+GOTO :SETVARS
 :NOSETX
 echo Run as administrator to set path or manually set path to "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%" and rerun
 GOTO :END
-:SETEPIC
+:SETVARS
 echo Setting up snvars.bat to contain the paths to SnowRunner installations
 echo rem Global variables may need tweaking do not rerun snenv.bat or it will lose changes > "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snvars.bat"
-echo set PYTHON=py>> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snvars.bat"
 echo set SNBACKUP="%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BACDIR%">> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snvars.bat"
 echo set SNSRC="%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%SRCDIR%">> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snvars.bat"
+echo python --version
+python --version
+IF ERRORLEVEL 1 GOTO :PY
+echo set PYTHON=python>> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snvars.bat"
+GOTO :SETEPIC
+:PY
+echo py --version
+py --version
+IF ERRORLEVEL 1 GOTO :NOPY
+echo set PYTHON=py>> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snvars.bat"
+GOTO :SETEPIC
+:NOPY
+echo Unable to find python please install and rerun
+GOTO :END
+:SETEPIC
 echo Searching for Epic install
 set EP="%HOMEDRIVE%%HOMEPATH%\Documents\My Games\SnowRunner\base\storage"
 set name=none
