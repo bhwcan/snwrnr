@@ -13,28 +13,25 @@ IF %1==pts GOTO PTSDIR
 echo ... not valid platform ...
 GOTO END
 :STEAMDIR
-IF NOT EXIST %HOMEDRIVE%%HOMEPATH%\bin\snsteam.bat (
+CALL snsteam.bat
+IF %ERRORLEVEL% NEQ 0 (
    echo .. not installed ...
    GOTO END
 )
-CALL %HOMEDRIVE%%HOMEPATH%\bin\snsteam.bat
-IF %ERRORLEVEL% NEQ 0 EXIT /b 1
 GOTO LISTFILES
 :EPICDIR
-IF NOT EXIST %HOMEDRIVE%%HOMEPATH%\bin\snepic.bat (
+CALL snepic.bat
+IF %ERRORLEVEL% NEQ 0 (
    echo .. not installed ...
    GOTO END
 )
-CALL %HOMEDRIVE%%HOMEPATH%\bin\snepic.bat
-IF %ERRORLEVEL% NEQ 0 EXIT /b 1
 GOTO LISTFILES
 :PTSDIR
-IF NOT EXIST %HOMEDRIVE%%HOMEPATH%\bin\snpts.bat (
+CALL snpts.bat
+IF %ERRORLEVEL% NEQ 0 (
    echo .. not installed ...
    GOTO END
 )
-CALL %HOMEDRIVE%%HOMEPATH%\bin\snpts.bat
-IF %ERRORLEVEL% NEQ 0 EXIT /b 1
 GOTO LISTFILES
 :LISTFILES
 DIR "%savefile%*"
