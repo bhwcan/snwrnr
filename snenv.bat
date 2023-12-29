@@ -26,11 +26,11 @@ call snhome.bat
 IF ERRORLEVEL 1 GOTO :NOPATH
 GOTO :SETVARS
 :NOPATH
-setx /M PATH "%PATH%;%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%"
+setx PATH "%PATH%;%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%"
 IF ERRORLEVEL 1 GOTO :NOSETX
 GOTO :SETVARS
 :NOSETX
-echo Run as administrator to set path or manually set path to "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%" and rerun
+echo Manually set path to "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%" and rerun
 GOTO :END
 :SETVARS
 echo Setting up snvars.bat to contain the paths to SnowRunner installations
