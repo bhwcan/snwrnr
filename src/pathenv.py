@@ -84,6 +84,7 @@ while cmd != 'x':
                 raise Exception()
         except:
             print("invalid row")
+            continue
     #print("[", cmd, "]", "[", row, "]")
     command(path, cmd, row)
 
