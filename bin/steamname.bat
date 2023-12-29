@@ -1,4 +1,5 @@
 @echo off
+CALL snvars.bat
 setlocal
 IF %1==1 SET "savefile=%STEAMDATA%\CompleteSave.cfg" & GOTO APP
 IF %1==2 SET "savefile=%STEAMDATA%\CompleteSave1.cfg." & GOTO APP
