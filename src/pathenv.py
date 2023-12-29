@@ -71,7 +71,7 @@ while cmd != 'x':
     tin = text.split(' ')
     cmd = tin[0]
     if cmd not in ('adumxs'):
-        print("invalid command")
+        print("invalid command:", cmd)
         continue
     #print(len(tin))
     if len(tin) > 1:
@@ -83,7 +83,7 @@ while cmd != 'x':
             if row < 1 or row > len(path):
                 raise Exception()
         except:
-            print("invalid row")
+            print("invalid row:", rtext)
             continue
     #print("[", cmd, "]", "[", row, "]")
     command(path, cmd, row)
