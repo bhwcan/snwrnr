@@ -1,4 +1,5 @@
 @echo off
+CALL snvars.bat
 setlocal
 IF %1==1 SET "savefile=%EPICDATA%\CompleteSave.dat" & GOTO APP
 IF %1==2 SET "savefile=%EPICDATA%\CompleteSave1.dat." & GOTO APP
