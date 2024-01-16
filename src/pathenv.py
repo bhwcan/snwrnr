@@ -1,17 +1,26 @@
 import os
+import ctypes
 import winreg
 
 regdir = "Environment"
+hkey = winreg.HKEY_CURRENT_USER
+adminhkey = winreg.HKEY_LOCAL_MACHINE
+adminregdir = "System\\CurrentControlSet\\Control\\Session Manager\\Environment"
 keyname = "Path"
 keyvalue = ""
 
+is_admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
+if is_admin:
+    hkey = adminhkey
+    regdir = adminregdir
+
 def setRegistry(regdir, keyname, keyvalue):
-    with winreg.CreateKey(winreg.HKEY_CURRENT_USER, regdir) as _:
-        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, regdir, 0, winreg.KEY_WRITE) as writeRegistryDir:
+    with winreg.CreateKey(hkey, regdir) as _:
+        with winreg.OpenKey(hkey, regdir, 0, winreg.KEY_WRITE) as writeRegistryDir:
             winreg.SetValueEx(writeRegistryDir, keyname, 0, winreg.REG_SZ, keyvalue)
 
 def getRegistry(regdir, keyname):
-    with winreg.OpenKey(winreg.HKEY_CURRENT_USER, regdir) as accessRegistryDir:
+    with winreg.OpenKey(hkey, regdir) as accessRegistryDir:
         value, _ = winreg.QueryValueEx(accessRegistryDir, keyname)
         return(value)
 
@@ -30,7 +39,10 @@ def getPath():
 
 def printPath(path):
     c = 1
-    print("\nUser Path for", os.environ.get("USERNAME"), "\n")
+    if is_admin:
+        print("\nSystem Path for Administrator\n")
+    else:
+        print("\nUser Path for", os.environ.get("USERNAME"), "\n")
     for d in path:
         print("{:3d}".format(c), '- ', d)
         c += 1
