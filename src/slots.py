@@ -109,7 +109,7 @@ class Game:
             count = count + 1
             self.slots[index].completesave = name
             self.slots[index].savename = name[:-4]
-            with open(name, 'r') as jf:
+            with open(name, 'r', encoding="utf-8", errors='ignore') as jf:
                 self.d = jf.read()
                 self.slots[index].j = json.loads(self.d[:-1])
 

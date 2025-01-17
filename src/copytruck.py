@@ -16,7 +16,7 @@ def openSaveFile(filename):
     #print(filename)
     
     # JSON file
-    f = open(filename)
+    f = open(filename, 'r', encoding="utf-8", errors='ignore')
     rd = f.read()
     #print(rd[-1], rd[-10:])
     if rd[-1] == '\x00':
@@ -87,7 +87,7 @@ def allTrucks(fd, td):
 
 
 def writeSaveFile(save):
-    f = open(save.filename, "w")
+    f = open(save.filename, "w", encoding="utf-8")
     json.dump(save.data, f, separators=(',', ':'))
     f.write('\00')
     f.close()

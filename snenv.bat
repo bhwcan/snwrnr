@@ -94,6 +94,7 @@ echo CALL snvars.bat >> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snsteam.bat"
 echo IF %%ERRORLEVEL%% NEQ 0 EXIT /b 1 >> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snsteam.bat"
 echo CD /D "%%STEAMDATA%%" >> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snsteam.bat"
 :END
+echo exit /b 0 >> "%HOMEDRIVE%%HOMEPATH%\%TOPDIR%\%BINDIR%\snvars.bat"
 echo Done.
 pause
 EXIT /b 0

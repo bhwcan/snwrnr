@@ -71,7 +71,7 @@ def copyCompleteSaveFile(save, slot, backup):
     if not os.path.exists(backupname):
         raise Exception( "missing backup dir or backup dir doesn't exist" )
     
-    fr = open(backupname, "r")
+    fr = open(backupname, "r", encoding="utf-8", errors='ignore')
     rd = fr.read()
     wd = rd.replace("CompleteSave", "CompleteSave" + slotToSuffix(slot))
     fr.close()
@@ -79,7 +79,7 @@ def copyCompleteSaveFile(save, slot, backup):
     #print(filename, wd[:40])
     #exit(1)
     
-    fw = open(filename, "w+")
+    fw = open(filename, "w+", encoding="utf-8")
     fw.write(wd)
     fw.close()
 
