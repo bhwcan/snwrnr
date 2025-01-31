@@ -72,7 +72,7 @@ def copyCompleteSaveFile(save, slot, backup):
         filename = steamname
     print(filename)
     
-    fr = open(filename, "r")
+    fr = open(filename, 'r', encoding="utf-8", errors='ignore')
     rd = fr.read()
     wd = rd.replace("CompleteSave" + slotToSuffix(slot), "CompleteSave")
     fr.close()
