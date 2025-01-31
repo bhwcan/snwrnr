@@ -71,15 +71,23 @@ def copyCompleteSaveFile(save, slot, backup):
         STEAM = True
         filename = steamname
     print(filename)
-    
-    fr = open(filename, 'r', encoding="utf-8", errors='ignore')
-    rd = fr.read()
-    wd = rd.replace("CompleteSave" + slotToSuffix(slot), "CompleteSave")
-    fr.close()
 
-    fw = open(backup + os.path.sep + "CompleteSave.dat", "w+")
-    fw.write(wd)
-    fw.close()
+    try:
+        fr = open(filename, 'r', encoding="utf-8", errors='ignore')
+        rd = fr.read()
+        wd = rd.replace("CompleteSave" + slotToSuffix(slot), "CompleteSave")
+        fr.close()
+    except:
+        print("File read error:", filename)
+        exit(30)
+
+    try:
+        fw = open(backup + os.path.sep + "CompleteSave.dat", "w+", encoding="utf-8")
+        fw.write(wd)
+        fw.close()
+    except:
+        print("File write error:", filename)
+        exit(30)
 
 def copyFiles(save, slot, backup):
 
@@ -101,6 +109,7 @@ def usage():
 if __name__ == "__main__":
     argc = len(sys.argv)
     #print(f"Arguments count: {argc}")
+    print("updated backup")
     if argc <= 1 or argc > 5:
         usage()
         exit(0)
