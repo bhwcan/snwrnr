@@ -57,6 +57,10 @@ MAPS = {
   'level_us_12_03': ["Flatland", "North Carolina", "USA"],
   'level_us_12_04': ["Oviro Hills", "North Carolina", "USA"],
   'level_ru_13_01': ["Zherbai Quarries", "Almaty Region", "Central Asia"],
+  'level_us_14_01': ["Unterfeld", "Austria", "Northern Europe"],
+  'level_us_14_02': ["Foothills", "Austria", "Northern Europe"],
+  'level_us_15_01': ["Harbor", "Quebec", "Canada"],
+  'level_us_15_02': ["Lake Ribiere", "Quebec", "Canada"],
 }
         
 class Slot:
