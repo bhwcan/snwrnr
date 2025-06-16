@@ -56,12 +56,17 @@ class Strings:
         d = f.read()
         s = d[2:].decode('utf-16')
         ls = s.splitlines()
+        c = 0
         for l in ls:
-            d = l[:-1].split("\"")
+            d = l[:-1].split("\"",1)
             #print(d[0].strip().upper(),":",d[1])
             self.data[d[0].strip().upper()] = d[1]
-        #pprint.pprint(self.data)
+            c += 1
+            #if c > 10:
+            #  pprint.pprint(self.data)
+            #  exit(1)
         f.close()
+        return c
 
 CONTESTS = {
   "RU_02_01_FIREWATCH_SUPPLY_CNT": [119,3300,430], # "Firewatch Tower Supply"
