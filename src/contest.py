@@ -277,7 +277,14 @@ if __name__ == "__main__":
     maxattempts = 3
 
     print("\n--------------------")
-    print(ulevel, strings.data[ulevel])
+    if ulevel != "ALL" and ulevel not in strings.data:
+      print(ulevel, "not in game")
+      exit(10)
+
+    if ulevel == "ALL":
+      print("All regions")
+    else:
+      print(ulevel, strings.data[ulevel])
     
     times = fd.data[fd.name]['SslValue']['persistentProfileData']['contestTimes']
     #pprint.pprint(times)
@@ -299,7 +306,7 @@ if __name__ == "__main__":
     total_money = 0
     total_exp = 0
     for t_id, t_info in CONTESTS.items():
-        if t_id.startswith(ulevel):
+        if ulevel == "ALL" or t_id.startswith(ulevel):
             found = True
             modified = False
             
@@ -356,10 +363,10 @@ if __name__ == "__main__":
             print("New Contest "+ t_id + ":" + str(times[t_id]))
 
     if not found:
-        print( LEVEL + ": rcegion has no contest data" )
+        print( LEVEL + ": region has no contest data" )
         
     #pprint.pprint(attempts)
 
     writeSaveFile(fd)
 
-    print("\nContest all gold for", MAPS[LEVEL], "Money added", total_money, "Experience added", total_exp)
+    print("\nContest all gold for", LEVEL, "Money added", total_money, "Experience added", total_exp)
